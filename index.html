@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Hike Calculator</title>
+	
+<link href="hike.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+
+<div id="container">
+<h1>JavaScript Hike Calculator</h1>
+<p>How much do you weigh in pounds? <input type="text" name="lbs" id="pounds"></p>
+    <p>Choose a trail: <select name="trail" id="trail">
+    <option value="90">Upper Hawksbill Trail</option>   
+    <option value="540">Old Rag Trail</option>
+    <option value="30">BearFence Rock Scramble Trail</option>
+	<option value="60">High Knob</option>
+    </select>
+    </p>
+    <p>
+    <button id="calc">Calculate</button>
+	</p>
+	<div id="result"></div> <p id="tot">total calories burned</p>
+	</div>
+<script type="text/javascript">
+
+// save the button id to a variable
+// then call the calculateCal function when the button is clicked
+var btn = document.getElementById('calc');	
+btn.addEventListener("click",calculateCal, false);			
+	
+// function to calculate total calories burned
+function calculateCal() {
+	// if weight entered is more than 800 send an alert
+    var lb = document.getElementById('pounds').value;
+	if (lb > 800) {
+		alert("Please enter a number less than or equal to 800.");
+	} //if not run the function
+	else {
+	// convert pounds to kilograms
+	var kg = document.getElementById('pounds').value / 2.2;
+	// find calories burned per minute based on weight
+	 var calpermin = kg * .07;
+	// pull the trail length in minutes
+	 var trail = document.getElementById('trail').value;
+	 // find total cals burned
+	 var calories = trail * calpermin; 
+	// round the number to the nearest integer
+	 var totalcal = Math.round(calories);
+	 
+	 resultBox = document.getElementById('result');
+	 resultBox.innerHTML = totalcal;               
+	
+	// clear the input box once someone clicks calculate so that they can try again
+	document.getElementById('pounds').value=""
+	}
+} // end calculateCal()
+</script>
+
+</body>
+</html>
